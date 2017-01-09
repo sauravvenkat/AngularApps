@@ -1,0 +1,102 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller='myCtrl'>
+<!--
+    Enter Color of Text:<input type='text' ng-model='myCol'/>
+    <p style='color:{{myCol}}'>My first expression: {{ 5 + 5 }}</p>
+-->
+  Pick a Currency:
+    <input type="checkbox" ng-model="USDCurrency" value="USD">USD
+    <input type="checkbox" ng-model="EURCurrency" value="EUR">EUR
+    <input type="checkbox" ng-model="GBPCurrency" value="GBP">GBP <br><br>
+    Enter Amount to Convert<input type='number' ng-model='Amount' min='1' max='1000000000'><br><br><br><br>
+    
+    <h3 ng-if='USDCurrency' id='USDHEAD'>USD</h3>
+    <h3 ng-if='EURCurrency'id='EURHEAD'>EUR</h3>
+    <h3 ng-if='GBPCurrency'id='GBPHEAD'>GBP</h3>
+    <table>
+        <tr ng-repeat='x in USD'>
+            <td>{{x.Name}}</td>
+        </tr>
+    
+    </table>
+    
+    <table ng-if='USDCurrency' id='USD'>
+        <tr ng-repeat='x in USD'>
+            <td>{{x.Value * Amount | currency:''}}</td>
+        </tr>
+    </table>
+    
+    <table ng-if='EURCurrency' id='EUR'>
+        <tr ng-repeat='x in EUR'>
+            <td>{{x.Value * Amount | currency:''}}</td>
+        </tr>
+    
+    </table>
+    <table ng-if='GBPCurrency' id='GBP'>
+        <tr ng-repeat='x in GBP'>
+            <td>{{x.Value * Amount | currency:''}}</td>
+        </tr>
+    
+    
+    
+    </table>
+    
+    
+</div>    
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function($scope) {
+        
+        $scope.USD = [{'Name': 'USD', 'Value': 1.0000},{'Name': 'EUR', 'Value': 0.94632},{'Name': 'GBP', 'Value': 0.82234},{'Name': 'INR', 'Value': 68.1571}, {'Name': 'AUD', 'Value': 1.35852}, {'Name': 'CAD', 'Value': 1.32279}, {'Name': 'ZAR', 'Value': 13.6637}, {'Name': 'NZD', 'Value': 1.42511}, {'Name': 'JPY', 'Value': 116.154}]
+        
+        $scope.EUR = [{'Name': 'USD', 'Value': 1.05690},{'Name': 'EUR', 'Value': 1.0000},{'Name': 'GBP', 'Value': 0.86913},{'Name': 'INR', 'Value': 72.0355}, {'Name': 'AUD', 'Value': 1.43592}, {'Name': 'CAD', 'Value': 1.39862}, {'Name': 'ZAR', 'Value': 14.4367}, {'Name': 'NZD', 'Value': 1.50650}, {'Name': 'JPY', 'Value': 122.757}]
+        
+        $scope.GBP = [{'Name': 'USD', 'Value': 1.21575},{'Name': 'EUR', 'Value': 1.15103},{'Name': 'GBP', 'Value': 1.0000},{'Name': 'INR', 'Value': 82.8094}, {'Name': 'AUD', 'Value': 1.65271}, {'Name': 'CAD', 'Value': 1.60849}, {'Name': 'ZAR', 'Value': 16.6078}, {'Name': 'NZD', 'Value': 1.73323}, {'Name': 'JPY', 'Value': 141.201}]
+        
+    });
+    
+    
+</script>
+    
+    
+    
+</body>
+    
+<style>
+    #USD{
+        position: absolute;
+        left: 200px;
+        top: 115px;
+    }
+    #USDHEAD{
+        position: absolute;
+        left: 200px;
+        top: 70px;
+        
+    }
+    #EUR{
+        position: absolute;
+        left: 400px;
+        top: 115px;
+    }
+    #GBP{
+        position: absolute;
+        left: 600px;
+        top: 115px;
+    
+    }
+    #EURHEAD{
+        position: absolute;
+        left: 400px;
+        top: 70px;
+    }
+    #GBPHEAD{
+        position: absolute;
+        left: 600px;
+        top: 70px;
+    }
+    
+</style>
